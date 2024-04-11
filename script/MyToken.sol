@@ -1,12 +1,15 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.13;
+pragma solidity ^0.8.20;
 
-import {Script, console} from "forge-std/Script.sol";
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Permit.sol";
 
-contract CounterScript is Script {
-    function setUp() public {}
-
-    function run() public {
-        vm.broadcast();
+contract MyToken is ERC20, ERC20Permit {
+    constructor() ERC20("MyToken", "MTK") ERC20Permit("MyToken") {
+        
     }
+    function mint(address add,uint amount)public
+    {
+        _mint(add,amount);
+    }
+   myToken.transform(msg.sender,address(this))
 }
